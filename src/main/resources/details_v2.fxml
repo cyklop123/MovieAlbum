@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="219.0" layoutY="14.0" text="Szczegolowe infromacje">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="35.0" text="Tytul:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="53.0" text="W pustyni i w puszczy" />
+      <Label layoutX="35.0" layoutY="71.0" text="Opis:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_LEFT" layoutX="35.0" layoutY="89.0" prefHeight="70.0" prefWidth="530.0" text="polski film fabularny w reżyserii Gavina Hooda, wyprodukowany w 2001, ekranizacja powieści W pustyni i w puszczy (1911) Henryka Sienkiewicza.Film był kręcony w plenerach Południowej Afryki." wrapText="true" />
+      <Label layoutX="35.0" layoutY="164.0" text="Obsada:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <ScrollPane hbarPolicy="NEVER" layoutX="35.0" layoutY="182.0" prefHeight="90.0" prefWidth="530.0" styleClass="edge-to-edge">
+         <content>
+            <VBox prefWidth="510.0">
+               <children>
+                  <Label alignment="TOP_LEFT" prefWidth="530.0" text="Stas - Jan Kowalski&#10;Nel - Anna Nowak&#10;Kali - Jhon Smith&#10;Slon - slon trabalski&#10;statysta - Henryk Hawelek" />
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <Label layoutX="35.0" layoutY="277.0" text="Ocena:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="295.0" text="7/10" />
+      <Button layoutX="500.0" layoutY="333.0" mnemonicParsing="false" prefWidth="65.0" text="Ok" />
+   </children>
+</Pane>

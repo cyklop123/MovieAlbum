@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="237.0" layoutY="14.0" text="Szczegolowe dane">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <VBox layoutX="35.0" layoutY="35.0" prefHeight="326.0" prefWidth="530.0">
+         <children>
+            <Label text="Tytul:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label text="W pustyni i w puszczy" />
+            <Label text="Opis:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label text="polski film fabularny w reżyserii Gavina Hooda, wyprodukowany w 2001, ekranizacja powieści W pustyni i w puszczy (1911) Henryka Sienkiewicza" wrapText="true" />
+            <Label text="Obsada:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label text="Stas - Jan Kowalski&#10;Nel - Anna Nowak&#10;Kali - Jhon Smith&#10;Slon - slon trabalski&#10;" />
+            <Label text="Ocena:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label text="7/10" />
+         </children>
+      </VBox>
+   </children>
+</Pane>

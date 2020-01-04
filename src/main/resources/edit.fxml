@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="editPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edit.Controller">
+   <children>
+      <Label fx:id="lWindowName" alignment="CENTER" contentDisplay="CENTER" layoutX="158.0" layoutY="14.0" prefHeight="27.0" prefWidth="85.0" text="Dodaj film" textAlignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <VBox layoutX="29.0" layoutY="41.0" prefHeight="54.0" prefWidth="350.0" spacing="5.0">
+         <children>
+            <Label prefHeight="22.0" prefWidth="66.0" text="Tytul" />
+            <TextField fx:id="tfTitle" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="29.0" layoutY="115.0" prefHeight="187.0" prefWidth="350.0" spacing="5.0">
+         <children>
+            <Label text="Opis" />
+            <TextArea fx:id="taDescription" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="25.0" layoutY="302.0" prefHeight="187.0" prefWidth="351.0">
+         <children>
+            <Label text="Obsada" />
+            <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="117.0" prefWidth="331.0" styleClass="edge-to-edge">
+               <content>
+                  <VBox fx:id="vbCast" prefHeight="110.0" prefWidth="311.0" />
+               </content>
+            </ScrollPane>
+            <Button fx:id="btnAddActor" mnemonicParsing="false" onAction="#addActor" prefHeight="32.0" prefWidth="100.0" text="Dodaj osobe">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin></Button>
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="25.0" layoutY="494.0" prefHeight="54.0" prefWidth="350.0">
+         <children>
+            <Label text="Ocena">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <Slider fx:id="slRating" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" minorTickCount="1" showTickLabels="true" value="5.0" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" />
+         </padding>
+      </VBox>
+      <Button fx:id="btnSave" layoutX="300.0" layoutY="549.0" mnemonicParsing="false" onAction="#addMovie" prefHeight="32.0" prefWidth="65.0" text="Zapisz" />
+      <Button fx:id="btnCancel" layoutX="222.0" layoutY="549.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="32.0" prefWidth="65.0" text="Anuluj" />
+   </children>
+</Pane>
