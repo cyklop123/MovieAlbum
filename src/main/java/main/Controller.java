@@ -1,15 +1,21 @@
 package main;
 
+import Models.Actor;
 import Models.Movie;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
@@ -26,6 +32,78 @@ public class Controller {
     private Pane mainPane;
     @FXML
     private VBox vbTable;
+
+    public void initTableView()
+    {
+        TableView<Movie> tableView = new TableView<>();
+
+        TableColumn<Movie, String> titleColumn = new TableColumn<>("Tytul");
+        titleColumn.setPrefWidth(152.);
+        titleColumn.setResizable(false);
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+
+        TableColumn<Movie, String> descriptionColumn = new TableColumn<>("Opis");
+        descriptionColumn.setPrefWidth(209.);
+        descriptionColumn.setResizable(false);
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+        TableColumn<Movie, Integer> ratingColumn = new TableColumn<>("Ocena");
+        ratingColumn.setPrefWidth(62.);
+        ratingColumn.setResizable(false);
+        ratingColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
+
+        tableView.getColumns().addAll(titleColumn,descriptionColumn,ratingColumn);
+
+        tableView.setOnMousePressed(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                if(mouseEvent.isPrimaryButtonDown() && mouseEvent.getClickCount() == 2)
+                {
+                    try
+                    {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/details.fxml"));
+                        Parent root = loader.load();
+
+                        Stage stage = new Stage();
+                        stage.setTitle("Szczegóły");
+                        stage.setScene(new Scene(root, 600, 400));
+                        stage.setResizable(false);
+
+                        stage.initModality(Modality.WINDOW_MODAL);
+                        Stage primaryStage = (Stage) mainPane.getScene().getWindow();
+                        stage.initOwner(primaryStage);
+
+                        Movie movie = tableView.getSelectionModel().getSelectedItem();
+
+                        details.Controller controller = loader.getController();
+                        controller.initData(movie);
+
+                        stage.showAndWait();
+
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        });
+
+        tableView.setItems(getMovies());
+
+        vbTable.getChildren().add(tableView);
+    }
+
+    public ObservableList<Movie> getMovies(){
+        ObservableList<Movie> movies = FXCollections.observableArrayList();
+
+        movies.add(new Movie.Builder().setTitle("Testowy film").setDescription("Opis testowego filmu").addActor("Jhon","Rambo","bambo").addActor("Jhoanna","Krupa","modelka").setRating(7).build());
+
+
+        return movies;
+    }
 
     @FXML
     void addMovie(ActionEvent event) {
