@@ -25,6 +25,7 @@ public class Controller {
 
     boolean editing = false;
     Movie retval = null;
+    int id_movie = 0;
 
     @FXML
     private Label lWindowName;
@@ -55,6 +56,7 @@ public class Controller {
         for(Actor a: movie.getCast())
             this.addCastToList(a);
         slRating.setValue(movie.getRating());
+        id_movie = movie.getId_movie();
     }
 
     public Movie returnData()
@@ -73,6 +75,7 @@ public class Controller {
         HBox row = new HBox(data,X);
         vbCast.getChildren().add(row);
 
+        row.getProperties().put("id_actor", actor.getId_actor());
         row.getProperties().put("name",actor.getName());
         row.getProperties().put("surname",actor.getSurname());
         row.getProperties().put("character",actor.getCharacter());
@@ -141,15 +144,17 @@ public class Controller {
             {
                 HBox row = (HBox) actor;
 
+                int id_actor = (int) row.getProperties().get("id_actor");
                 String name = (String) row.getProperties().get("name");
                 String surname = (String) row.getProperties().get("surname");
                 String character = (String) row.getProperties().get("character");
 
-                actors.add(new Actor(name.trim(), surname.trim(), character.trim()));
+                actors.add(new Actor(id_actor, name.trim(), surname.trim(), character.trim()));
 
             }
 
             retval = new Movie.Builder().
+                    setId_movie(id_movie).
                     setTitle(tfTitle.getText().trim()).
                     setDescription(taDescription.getText().trim()).
                     setCast(actors).

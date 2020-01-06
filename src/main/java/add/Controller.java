@@ -32,7 +32,7 @@ public class Controller
         String character = tfCharacter.getText().trim();
         if(!name.equals("") && !surname.equals("") && !character.equals(""))
         {
-            retval = new Actor(name,surname,character);
+            retval = new Actor(0, name,surname,character);
 
             Stage stage = (Stage) btnCloseWindow.getScene().getWindow();
             stage.close();

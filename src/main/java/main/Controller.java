@@ -1,6 +1,6 @@
 package main;
 
-import Models.Actor;
+import Database.MovieDatabase;
 import Models.Movie;
 
 import javafx.collections.FXCollections;
@@ -12,15 +12,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -32,6 +29,8 @@ public class Controller {
     private Pane mainPane;
     @FXML
     private VBox vbTable;
+
+    private MovieDatabase db = MovieDatabase.getInstance();
 
     public void initTableView()
     {
@@ -99,8 +98,7 @@ public class Controller {
     public ObservableList<Movie> getMovies(){
         ObservableList<Movie> movies = FXCollections.observableArrayList();
 
-        movies.add(new Movie.Builder().setTitle("Testowy film").setDescription("Opis testowego filmu").addActor("Jhon","Rambo","bambo").addActor("Jhoanna","Krupa","modelka").setRating(7).build());
-
+        movies.addAll(db.selectMovies());
 
         return movies;
     }
@@ -123,8 +121,6 @@ public class Controller {
 
 
             edit.Controller controller = loader.getController();
-            //do okna edycji
-            //controller.initData(new Movie.Builder().setTitle("Testowy film").setDescription("Opis testowego filmu").addActor("Jhon","Rambo","bambo").addActor("Jhoanna","Krupa","modelka").setRating(7).build());
             stage.showAndWait();
 
             Movie movie = controller.returnData();
@@ -132,7 +128,13 @@ public class Controller {
             if(movie != null)
             {
                 TableView<Movie> tableView = (TableView<Movie>) vbTable.getChildren().get(0);
+
+                System.out.println(movie.toString());
+                movie = db.insertMovie(movie);
+                System.out.println(movie);
+
                 tableView.getItems().add(movie);
+
 
             }
 
@@ -152,6 +154,7 @@ public class Controller {
 
         if(selectedMovies.size() > 0)
         {
+            db.deleteMovie(selectedMovies.get(0));
             selectedMovies.forEach(allMovies::remove);
         }
         else
@@ -195,19 +198,15 @@ public class Controller {
 
                 if(updatedMovie != null)
                 {
-                    ObservableList<Movie> allMovies = tableView.getItems();
+                    updatedMovie = db.updateMovie(updatedMovie);
 
-                    for (Movie m : allMovies)
-                    {
-                        if (m == movie)
-                        {
-                            m.setTitle(updatedMovie.getTitle());
-                            m.setDescription(updatedMovie.getDescription());
-                            m.setCast(updatedMovie.getCast());
-                            m.setRating(updatedMovie.getRating());
-                            tableView.refresh();
-                        }
-                    }
+                    Movie m = tableView.getSelectionModel().getSelectedItem();
+                    m.setTitle(updatedMovie.getTitle());
+                    m.setDescription(updatedMovie.getDescription());
+                    m.setCast(updatedMovie.getCast());
+                    m.setRating(updatedMovie.getRating());
+                    tableView.refresh();
+
                 }
 
             } catch (IOException e)

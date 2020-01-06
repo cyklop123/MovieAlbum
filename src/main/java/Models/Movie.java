@@ -5,21 +5,32 @@ import java.util.List;
 
 public class Movie
 {
-    String title;
-    String description;
-    List<Actor> cast;
-    int rating;
+    private int id_movie;
+    private String title;
+    private String description;
+    private List<Actor> cast;
+    private int rating;
 
     private Movie(){};
 
-    public Movie(String title, String description, List<Actor> cast, int rating)
+    public Movie(int id_movie, String title, String description, List<Actor> cast, int rating)
     {
+        this.id_movie=id_movie;
         this.title = title;
         this.description = description;
         this.cast = cast;
         this.rating = rating;
     }
 
+    public int getId_movie()
+    {
+        return id_movie;
+    }
+
+    public void setId_movie(int id_movie)
+    {
+        this.id_movie = id_movie;
+    }
 
     public String getTitle()
     {
@@ -61,15 +72,32 @@ public class Movie
         this.rating = rating;
     }
 
+    public void addActor(Actor actor)
+    {
+        cast.add(actor);
+    }
+
+    public void addActor(int id_actor, String name, String surname, String character)
+    {
+        cast.add(new Actor(id_actor, name, surname, character));
+    }
+
+
     public static class Builder{
-        String title = "";
-        String description = "";
-        List<Actor> cast = new ArrayList<>();
-        int rating = 0;
+        private int id_movie = 0;
+        private String title = "";
+        private String description = "";
+        private List<Actor> cast = new ArrayList<>();
+        private int rating = 0;
 
         public Builder setTitle(String title)
         {
             this.title = title;
+            return this;
+        }
+
+        public Builder setId_movie(int id_movie){
+            this.id_movie = id_movie;
             return this;
         }
 
@@ -91,21 +119,9 @@ public class Movie
             return this;
         }
 
-        public Builder addActor(Actor actor)
-        {
-            cast.add(actor);
-            return this;
-        }
-
-        public Builder addActor(String name, String surname, String character)
-        {
-            cast.add(new Actor(name, surname, character));
-            return this;
-        }
-
         public Movie build()
         {
-            return new Movie(title, description, cast, rating);
+            return new Movie(id_movie, title, description, cast, rating);
         }
     }
 
@@ -113,7 +129,8 @@ public class Movie
     public String toString()
     {
         return "Movie{" +
-                "title='" + title + '\'' +
+                "id_movie=" + id_movie +
+                ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", cast=" + cast.toString() +
                 ", rating=" + rating +
