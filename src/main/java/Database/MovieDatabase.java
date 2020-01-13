@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MovieDatabase
 {
-    private static MovieDatabase instance = null;
+    static MovieDatabase instance = null;
     public static MovieDatabase getInstance()
     {
         if(instance == null)
@@ -264,6 +264,19 @@ public class MovieDatabase
         finally
         {
             return movie;
+        }
+    }
+
+    public void testDB()
+    {
+        try
+        {
+            connection.close();
+            connection = DriverManager.getConnection("jdbc:sqlite::resource:testDB.db");
+            statement = connection.createStatement();
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
         }
     }
 

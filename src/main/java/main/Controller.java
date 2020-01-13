@@ -119,7 +119,6 @@ public class Controller {
             Stage primaryStage = (Stage) mainPane.getScene().getWindow();
             stage.initOwner(primaryStage);
 
-
             edit.Controller controller = loader.getController();
             stage.showAndWait();
 
@@ -134,8 +133,6 @@ public class Controller {
                 System.out.println(movie);
 
                 tableView.getItems().add(movie);
-
-
             }
 
         } catch (IOException e)
